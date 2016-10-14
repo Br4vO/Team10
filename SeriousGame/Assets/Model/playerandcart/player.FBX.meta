@@ -185,9 +185,9 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk
       takeName: Take 001
-      firstFrame: 0
+      firstFrame: 31
       lastFrame: 49
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
