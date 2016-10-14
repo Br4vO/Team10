@@ -59,8 +59,24 @@ public class InputController : MonoBehaviour {
                     if (couldBeSwipe && (swipeTime < maxSwipeTime) && (swipeDist > minSwipeDist))
                     {
                         // It's a swiiiiiiiiiiiipe!
-                        float xSwipeDirection = Mathf.Sign(Input.mousePosition.x - startPos.x);
-                        float ySwipeDirection = Mathf.Sign(Input.mousePosition.y - startPos.y);
+                        float xSwipeDirection;
+                        float ySwipeDirection;
+
+                        float xMagnitude = Mathf.Abs(touch.position.x - startPos.x);
+                        float yMagnitude = Mathf.Abs(touch.position.y - startPos.y);
+
+                        if(xMagnitude > yMagnitude)
+                        {
+                            //horizontal swipe
+                            xSwipeDirection = Mathf.Sign(touch.position.x - startPos.x);
+                            ySwipeDirection = 0;
+                        }
+                        else
+                        {
+                            //vertical swipe
+                            xSwipeDirection = 0;
+                            ySwipeDirection = Mathf.Sign(touch.position.y - startPos.y);
+                        }
 
                         HandleInteraction(xSwipeDirection, ySwipeDirection);
                     }
@@ -94,8 +110,24 @@ public class InputController : MonoBehaviour {
                 if ((swipeTime < maxSwipeTime) && (swipeDist > minSwipeDist))
                 {
                     // It's a swiiiiiiiiiiiipe!
-                    float xSwipeDirection = Mathf.Sign(Input.mousePosition.x - startPos.x);
-                    float ySwipeDirection = Mathf.Sign(Input.mousePosition.y - startPos.y);
+                    float xSwipeDirection;
+                    float ySwipeDirection;
+
+                    float xMagnitude = Mathf.Abs(Input.mousePosition.x - startPos.x);
+                    float yMagnitude = Mathf.Abs(Input.mousePosition.y - startPos.y);
+
+                    if (xMagnitude > yMagnitude)
+                    {
+                        //horizontal swipe
+                        xSwipeDirection = Mathf.Sign(Input.mousePosition.x - startPos.x);
+                        ySwipeDirection = 0;
+                    }
+                    else
+                    {
+                        //vertical swipe
+                        xSwipeDirection = 0;
+                        ySwipeDirection = Mathf.Sign(Input.mousePosition.y - startPos.y);
+                    }
 
                     HandleInteraction(xSwipeDirection, ySwipeDirection);
                 }
