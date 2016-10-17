@@ -2,29 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class FoodSpawner : MonoBehaviour {
 
-	private enum Foods
-	{
-		None = 0,
-		Apple,
-		Broccoli,
-		Banana,
-		Orange,
-		Cheese,
-		Fish, 
-		Egg, 
-		Carrot, 
-		Burger, 
-		Pizza, 
-		Soda, 
-		FrenchFries, 
-		CandyBar, 
-		IceCream
-	};
-
 	public int poolSize;
-	Dictionary<Foods, List<GameObject>> foodPool;
+	public Dictionary<Foods, List<GameObject>> foodPool;
 
 	// Use this for initialization
 	void Start () 
@@ -63,6 +45,25 @@ public class FoodSpawner : MonoBehaviour {
 			//foodPool [Foods.IceCream].Add((GameObject)Instantiate(Resources.Load("Prefabs/IceCream")));
 		}
 	}
+
+	public enum Foods
+	{
+		None = 0,
+		Apple = 1,
+		Broccoli= 2,
+		Banana= 3,
+		Orange= 4,
+		Cheese= 5,
+		Fish= 6, 
+		Egg= 7, 
+		Carrot= 8, 
+		Burger= 9, 
+		Pizza= 10, 
+		Soda= 11, 
+		FrenchFries= 12, 
+		CandyBar= 13, 
+		IceCream= 14
+	};
 
 }
 

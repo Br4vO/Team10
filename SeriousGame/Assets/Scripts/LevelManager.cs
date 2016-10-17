@@ -54,14 +54,16 @@ public class LevelManager : MonoBehaviour {
     }
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
         foodTotal = new Food();
         weekTotal = new Food();
         dayTotal = new Food();
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 }
