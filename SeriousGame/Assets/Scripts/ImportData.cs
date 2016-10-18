@@ -43,12 +43,13 @@ public class ImportData : MonoBehaviour {
 				if (data.level1 [j + ((5-i)*3)] != 0) 
 				{
 					foodSpawner.foodPool.TryGetValue ((FoodSpawner.Foods)data.level1 [j + ((5-i)*3)], out poolOfFoods);
-					//Finding available food
+                    //Finding available food
 
-					int k = 0;
-					while (poolOfFoods [k].transform.position.x != 0 || poolOfFoods [k].transform.position.z != -3) 
-					{
-						k++;
+                    int k = 0;
+					while (poolOfFoods [k].transform.position.x != 0 || poolOfFoods [k].transform.position.z != -3)
+                    {
+                        Debug.Log("k=" + k);
+                        k++;
 					}
 					foodPlaceByLevel [0] [j, i] = poolOfFoods [k];
 					foodPlaceByLevel [0] [j, i].transform.position = new Vector3 (j, 0, i);
@@ -62,7 +63,6 @@ public class ImportData : MonoBehaviour {
 
 class JsonData
 {
-	//public List<int[]> level1;
 	public int[] level1 = new int[18];
 	public int[] level2 = new int[18];
 }
