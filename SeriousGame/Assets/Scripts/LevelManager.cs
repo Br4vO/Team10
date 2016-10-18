@@ -63,6 +63,7 @@ public class LevelManager : MonoBehaviour {
         weekTotal = new Food();
         dayTotal = new Food();
         currLevel = 1;
+        levelGoals = new List<Food>();
 
         CreateLevelGoals();
     }
