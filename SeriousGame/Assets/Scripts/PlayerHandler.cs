@@ -26,6 +26,11 @@ public class PlayerHandler : MonoBehaviour {
                 playerAnimation.Play("Idle");
             }
         }
+
+		if (gameObject.transform.position.z >= 5)
+		{
+			ResetLevel ();
+		}
 	}
 
     public void MovePlayer(float xSwipeDirection, float ySwipeDirection)
@@ -47,4 +52,12 @@ public class PlayerHandler : MonoBehaviour {
             walkingCount = 0;
         }
     }
+
+	public void ResetLevel()
+	{
+		//Reset level and show end screen
+		GameObject UI = GameObject.Find("UI");
+		UI.GetComponent<SwitchUI> ().toEnd ();
+		this.gameObject.transform.position = new Vector3 (1, 0, -1);
+	}
 }

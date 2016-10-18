@@ -62,7 +62,6 @@ public class ImportData : MonoBehaviour {
 
 class JsonData
 {
-	//public List<int[]> level1;
 	public int[] level1 = new int[18];
 	public int[] level2 = new int[18];
 }
