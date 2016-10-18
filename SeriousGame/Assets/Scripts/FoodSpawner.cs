@@ -29,19 +29,19 @@ public class FoodSpawner : MonoBehaviour {
 
 		for (int i = 0; i < poolSize; ++i)
 		{
-			//foodPool [Foods.Apple].Add((GameObject)Instantiate(Resources.Load("Prefabs/Apple")));
-			//foodPool [Foods.Broccoli].Add((GameObject)Instantiate(Resources.Load("Prefabs/Broccoli")));
+			foodPool [Foods.Apple].Add((GameObject)Instantiate(Resources.Load("Prefabs/Apple")));
+			foodPool [Foods.Broccoli].Add((GameObject)Instantiate(Resources.Load("Prefabs/Broccoli")));
 			foodPool [Foods.Banana].Add((GameObject)Instantiate(Resources.Load("Prefabs/Banana")));
 			//foodPool [Foods.Orange].Add((GameObject)Instantiate(Resources.Load("Prefabs/Orange")));
-			//foodPool [Foods.Cheese].Add((GameObject)Instantiate(Resources.Load("Prefabs/Cheese")));
+			foodPool [Foods.Cheese].Add((GameObject)Instantiate(Resources.Load("Prefabs/Cheese")));
 			foodPool [Foods.Fish].Add((GameObject)Instantiate(Resources.Load("Prefabs/Fish")));
 			foodPool [Foods.Egg].Add((GameObject)Instantiate(Resources.Load("Prefabs/Egg")));
-			//foodPool [Foods.Carrot].Add((GameObject)Instantiate(Resources.Load("Prefabs/Carrot")));
+			foodPool [Foods.Carrot].Add((GameObject)Instantiate(Resources.Load("Prefabs/Carrot")));
 			foodPool [Foods.Burger].Add((GameObject)Instantiate(Resources.Load("Prefabs/Burger")));
 			foodPool [Foods.Pizza].Add((GameObject)Instantiate(Resources.Load("Prefabs/Pizza")));
-			//foodPool [Foods.Soda].Add((GameObject)Instantiate(Resources.Load("Prefabs/Soda")));
-			//foodPool [Foods.FrenchFries].Add((GameObject)Instantiate(Resources.Load("Prefabs/FrenchFries")));
-			//foodPool [Foods.CandyBar].Add((GameObject)Instantiate(Resources.Load("Prefabs/CandyBar")));
+			foodPool [Foods.Soda].Add((GameObject)Instantiate(Resources.Load("Prefabs/Soda")));
+			foodPool [Foods.FrenchFries].Add((GameObject)Instantiate(Resources.Load("Prefabs/Fries")));
+			foodPool [Foods.CandyBar].Add((GameObject)Instantiate(Resources.Load("Prefabs/Candy")));
 			//foodPool [Foods.IceCream].Add((GameObject)Instantiate(Resources.Load("Prefabs/IceCream")));
 		}
 	}
