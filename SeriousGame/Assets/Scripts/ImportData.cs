@@ -52,7 +52,7 @@ public class ImportData : MonoBehaviour {
                         k++;
 					}
 					foodPlaceByLevel [0] [j, i] = poolOfFoods [k];
-					foodPlaceByLevel [0] [j, i].transform.position = new Vector3 (j, 0, i);
+					foodPlaceByLevel [0] [j, i].transform.position = new Vector3 (j * .38333333f, 0, i * .38333333f);
 					Debug.Log(foodPlaceByLevel [0] [j, i].transform.position);
 				}
 			}

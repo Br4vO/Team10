@@ -17,11 +17,11 @@ public class PlayerHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(walkingCount < 30)
+	    if(walkingCount < 23)
         {
             ++walkingCount;
-            transform.Translate(new Vector3(xOffset, 0, yOffset) * 1 * Time.deltaTime);
-            if(walkingCount == 30)
+            transform.Translate(new Vector3(xOffset, 0, yOffset) * Time.deltaTime);
+            if(walkingCount == 23)
             {
                 playerAnimation.Play("Idle");
             }
