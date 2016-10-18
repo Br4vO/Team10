@@ -32,7 +32,7 @@ public class FoodSpawner : MonoBehaviour {
 			foodPool [Foods.Apple].Add((GameObject)Instantiate(Resources.Load("Prefabs/Apple")));
 			foodPool [Foods.Broccoli].Add((GameObject)Instantiate(Resources.Load("Prefabs/Broccoli")));
 			foodPool [Foods.Banana].Add((GameObject)Instantiate(Resources.Load("Prefabs/Banana")));
-			//foodPool [Foods.Orange].Add((GameObject)Instantiate(Resources.Load("Prefabs/Orange")));
+			foodPool [Foods.Orange].Add((GameObject)Instantiate(Resources.Load("Prefabs/Orange")));
 			foodPool [Foods.Cheese].Add((GameObject)Instantiate(Resources.Load("Prefabs/Cheese")));
 			foodPool [Foods.Fish].Add((GameObject)Instantiate(Resources.Load("Prefabs/Fish")));
 			foodPool [Foods.Egg].Add((GameObject)Instantiate(Resources.Load("Prefabs/Egg")));
@@ -42,7 +42,7 @@ public class FoodSpawner : MonoBehaviour {
 			foodPool [Foods.Soda].Add((GameObject)Instantiate(Resources.Load("Prefabs/Soda")));
 			foodPool [Foods.FrenchFries].Add((GameObject)Instantiate(Resources.Load("Prefabs/Fries")));
 			foodPool [Foods.CandyBar].Add((GameObject)Instantiate(Resources.Load("Prefabs/Candy")));
-			//foodPool [Foods.IceCream].Add((GameObject)Instantiate(Resources.Load("Prefabs/IceCream")));
+			foodPool [Foods.IceCream].Add((GameObject)Instantiate(Resources.Load("Prefabs/IceCream")));
 		}
 	}
 
