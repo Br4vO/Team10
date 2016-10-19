@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public class Food
 {
@@ -326,7 +327,7 @@ public class LevelManager : MonoBehaviour {
     private int GetLevelStepSize()
     {
         Food levelGoal = levelGoals[GetCurrentLevel() - 1];
-        return levelGoal.GetTotalFood() / 280; 
+        return (280 / levelGoal.GetTotalFood()) + 1; 
     }
 
     private void UpdateUI(string foodName)
@@ -335,7 +336,7 @@ public class LevelManager : MonoBehaviour {
 
         //increment or decrement energy bar
         RectTransform energyBarTransform = GameObject.Find("EnergyBar").GetComponent<RectTransform>();
-        energyBarTransform.sizeDelta = new Vector2(stepSize, energyBarTransform.rect.height);
+        energyBarTransform.sizeDelta = new Vector2(Math.Min(energyBarTransform.rect.width + stepSize, 280), energyBarTransform.rect.height);
 
         //update player UI image if needed
         const float energyBarMaxWidth = 280f;
@@ -343,19 +344,21 @@ public class LevelManager : MonoBehaviour {
 
         if(energyPercent < .25f)
         {
-            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads_0", typeof(Sprite)) as Sprite;
+            Sprite sheet = Resources.Load("heads_0", typeof(Sprite)) as Sprite;
+
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads", typeof(Sprite)) as Sprite;
         }
         else if(energyPercent < .5f)
         {
-            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads_1", typeof(Sprite)) as Sprite;
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads", typeof(Sprite)) as Sprite;
         }
         else if(energyPercent < .75f)
         {
-            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads_2", typeof(Sprite)) as Sprite;
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads", typeof(Sprite)) as Sprite;
         }
         else
         {
-            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads_3", typeof(Sprite)) as Sprite;
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads", typeof(Sprite)) as Sprite;
         }
     }
 
