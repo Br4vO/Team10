@@ -27,11 +27,13 @@ public class SwitchUI : MonoBehaviour {
 	{
 		startUI.gameObject.SetActive (false);
 		inGameUI.gameObject.SetActive (true);
+		GameObject.Find ("LevelManager").GetComponent<LevelManager> ().showPickupStats ();
 	}
 
 	public void toEnd()
 	{
 		inGameUI.gameObject.SetActive (false);
 		endGameUI.gameObject.SetActive (true);
+		GameObject.Find ("LevelManager").GetComponent<LevelManager> ().removePickupStats ();
 	}
 }

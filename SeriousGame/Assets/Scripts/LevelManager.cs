@@ -106,6 +106,7 @@ public class LevelManager : MonoBehaviour {
         dayTotal = new Food();
         currLevel = 1;
         levelGoals = new List<Food>();
+		GUIObjects = new List<GameObject> ();
 		FoodLevelObjects = new List<GameObject[,]> ();
 		for (int i = 0; i <14; i++)
 			FoodLevelObjects.Insert (FoodLevelObjects.Count,new GameObject[3, 6]);
@@ -417,15 +418,40 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-	private void showPickupStats()
+	public void showPickupStats()
 	{
-		List<int>tempIntList = levelGoals [GetCurrentLevel ()].GetGoalData ();
-
-		for (int i = 0; i > tempIntList.Count; i++) 
+		List<int>tempIntList = levelGoals [GetCurrentLevel ()-1].GetGoalData ();
+		List<GameObject> poolOfFoods = new List<GameObject> ();
+		for (int i = 0; i < 14; i++) 
 		{
-			//if (tempIntList[i] > 0)
-				//foodSpawner.foodPool.TryGetValue ((FoodSpawner.Foods)tempIntList[i], out poolOfFoods);	
+			if (tempIntList [i] > 0) 
+			{
+				foodSpawner.foodPool.TryGetValue ((FoodSpawner.Foods)i+1, out poolOfFoods);	
+				GUIObjects.Add(poolOfFoods[poolOfFoods.Count-1]);
+			}
 		}
+		int k = 0;
+		foreach (GameObject food in GUIObjects) 
+		{
+			
+			food.transform.position = GameObject.Find ("UICamera").transform.position;
+			food.layer = 8;
+			food.transform.parent = GameObject.Find ("UICamera").transform;
+			food.transform.localPosition = new Vector3 (-250, 60-k, 100);
+			k += 30;
+		}
+	}
+
+	public void removePickupStats ()
+	{
+		foreach (GameObject food in GUIObjects) 
+		{
+			food.layer = 0;
+			food.transform.position = new Vector3 (0, 0, -3);
+			food.transform.parent = null;
+		}
+
+		GUIObjects.Clear ();
 	}
 
     public void FoodCollected(string foodName)
