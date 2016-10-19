@@ -44,6 +44,27 @@ public class Food
         IceCream = 0;
     }
 
+	public List<int> GetGoalData()
+	{
+		List<int> GoalData = new List<int> ();
+		GoalData.Add (Apple);
+		GoalData.Add (Broccoli);
+		GoalData.Add (Banana);
+		GoalData.Add (Orange);		
+		GoalData.Add (Cheese);
+		GoalData.Add (Fish);
+		GoalData.Add (Egg);
+		GoalData.Add (Carrot);
+		GoalData.Add (Burger);
+		GoalData.Add (Pizza);
+		GoalData.Add (Soda);
+		GoalData.Add (FrenchFries);
+		GoalData.Add (CandyBar);
+		GoalData.Add (IceCream);
+
+		return GoalData;
+	}
+
     public int GetTotalFood()
     {
         return Apple + Broccoli + Banana + Orange + Cheese + Fish + Egg + Carrot + Burger + Pizza + Soda + FrenchFries + CandyBar + IceCream;
@@ -59,6 +80,8 @@ public class LevelManager : MonoBehaviour {
 
     private int currLevel;
     private List<Food> levelGoals;
+
+	private List<GameObject> GUIObjects;
 
 	private List<GameObject[,]> FoodLevelObjects;
 
@@ -245,6 +268,7 @@ public class LevelManager : MonoBehaviour {
 
 		//Reset player position
 		GameObject.Find("player").transform.position = new Vector3(0.3833333f, 0f, -0.3833333f);
+		GameObject.Find ("player").GetComponent<PlayerHandler> ().position = new Vector2 (1, -1);
 		GameObject.Find ("UI").GetComponent<SwitchUI> ().toStart ();
 	}
     private void IncrementFoodCount(string foodName)
@@ -392,6 +416,17 @@ public class LevelManager : MonoBehaviour {
             GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = heads[3];
         }
     }
+
+	private void showPickupStats()
+	{
+		List<int>tempIntList = levelGoals [GetCurrentLevel ()].GetGoalData ();
+
+		for (int i = 0; i > tempIntList.Count; i++) 
+		{
+			//if (tempIntList[i] > 0)
+				//foodSpawner.foodPool.TryGetValue ((FoodSpawner.Foods)tempIntList[i], out poolOfFoods);	
+		}
+	}
 
     public void FoodCollected(string foodName)
     {
