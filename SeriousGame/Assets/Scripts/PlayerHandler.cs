@@ -11,7 +11,7 @@ public class PlayerHandler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        position = new Vector2(0, 0);
+        position = new Vector2(1, -1);
         playerAnimation = GetComponent<Animation>();
     }
 	
@@ -35,7 +35,13 @@ public class PlayerHandler : MonoBehaviour {
 
     public void MovePlayer(float xSwipeDirection, float ySwipeDirection)
     {
-        position.x += xSwipeDirection;
+        float temp = position.x + xSwipeDirection;
+        if (temp > 2 || temp < 0)
+        {
+            return;
+        }
+
+        position.x = temp;
         position.y += ySwipeDirection >= 0 ? ySwipeDirection : 0;//can only swipe up, not down
 
         xOffset = xSwipeDirection;

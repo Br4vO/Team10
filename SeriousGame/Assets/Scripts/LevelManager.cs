@@ -51,6 +51,8 @@ public class LevelManager : MonoBehaviour {
     private int currLevel;
     private List<Food> levelGoals;
 
+    private AudioSource gameMusic;
+
     void Awake()
     {
         Application.targetFrameRate = 60;
@@ -59,6 +61,9 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+        gameMusic = GetComponent<AudioSource>();
+        gameMusic.Play();
+
         foodTotal = new Food();
         weekTotal = new Food();
         dayTotal = new Food();
