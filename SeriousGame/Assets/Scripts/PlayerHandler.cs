@@ -64,6 +64,6 @@ public class PlayerHandler : MonoBehaviour {
 		//Reset level and show end screen
 		GameObject UI = GameObject.Find("UI");
 		UI.GetComponent<SwitchUI> ().toEnd ();
-		this.gameObject.transform.position = new Vector3 (1, 0, -1);
+		//this.gameObject.transform.position = new Vector3 (1, 0, -1);
 	}
 }
