@@ -12,6 +12,7 @@ public class InputController : MonoBehaviour {
     private float comfortZone;
     public float minSwipeDist;
     public float maxSwipeTime;
+    private bool paused;
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +22,22 @@ public class InputController : MonoBehaviour {
         }
 
         player = GameObject.Find("player").GetComponent<PlayerHandler>();
+        comfortZone = 100;
+        paused = true;
 	}
+
+    public void SetPaused(bool p)
+    {
+        paused = p;
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if(paused)
+        {
+            return;
+        }
+
 	    if(isMobile)
         {
             int touchesOnScreen = Input.touchCount;

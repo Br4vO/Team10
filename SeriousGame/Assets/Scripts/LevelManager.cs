@@ -81,7 +81,7 @@ public class LevelManager : MonoBehaviour {
     private int currLevel;
     private List<Food> levelGoals;
 
-	private List<GameObject> GUIObjects;
+	//private List<GameObject> GUIObjects;
 
 	private List<GameObject[,]> FoodLevelObjects;
 
@@ -271,77 +271,99 @@ public class LevelManager : MonoBehaviour {
 		GameObject.Find("player").transform.position = new Vector3(0.3833333f, 0f, -0.3833333f);
 		GameObject.Find ("player").GetComponent<PlayerHandler> ().position = new Vector2 (1, -1);
 		GameObject.Find ("UI").GetComponent<SwitchUI> ().toStart ();
-	}
+
+        //Reset food counters
+        dayTotal.Reset();
+
+        if(GetCurrentLevel() == 8)
+        {
+            weekTotal.Reset();
+        }
+    }
     private void IncrementFoodCount(string foodName)
     {
         switch (foodName)
         {
             case "apple":
+            case "apple(Clone)":
                 foodTotal.Apple += 1;
                 weekTotal.Apple += 1;
                 dayTotal.Apple += 1;
                 break;
             case "Banana":
+            case "Banana(Clone)":
                 foodTotal.Banana += 1;
                 weekTotal.Banana += 1;
                 dayTotal.Banana += 1;
                 break;
             case "broccoli":
+            case "broccoli(Clone)":
                 foodTotal.Broccoli += 1;
                 weekTotal.Broccoli += 1;
                 dayTotal.Broccoli += 1;
                 break;
             case "Burger":
+            case "Burger(Clone)":
                 foodTotal.Burger += 1;
                 weekTotal.Burger += 1;
                 dayTotal.Burger += 1;
                 break;
             case "Candy":
+            case "Candy(Clone)":
                 foodTotal.CandyBar += 1;
                 weekTotal.CandyBar += 1;
                 dayTotal.CandyBar += 1;
                 break;
             case "Carrot":
+            case "Carrot(Clone)":
                 foodTotal.Carrot += 1;
                 weekTotal.Carrot += 1;
                 dayTotal.Carrot += 1;
                 break;
             case "cheese":
+            case "cheese(Clone)":
                 foodTotal.Cheese += 1;
                 weekTotal.Cheese += 1;
                 dayTotal.Cheese += 1;
                 break;
             case "Egg":
+            case "Egg(Clone)":
                 foodTotal.Egg += 1;
                 weekTotal.Egg += 1;
                 dayTotal.Egg += 1;
                 break;
             case "Fish":
+            case "Fish(Clone)":
                 foodTotal.Fish += 1;
                 weekTotal.Fish += 1;
                 dayTotal.Fish += 1;
                 break;
             case "fries":
+            case "fries(Clone)":
                 foodTotal.FrenchFries += 1;
                 weekTotal.FrenchFries += 1;
                 dayTotal.FrenchFries += 1;
                 break;
             case "IceCream":
+            case "IceCream(Clone)":
                 foodTotal.IceCream += 1;
                 weekTotal.IceCream += 1;
                 dayTotal.IceCream += 1;
                 break;
             case "Orange":
+            case "Orange(Clone)":
                 foodTotal.Orange += 1;
                 weekTotal.Orange += 1;
                 dayTotal.Orange += 1;
                 break;
             case "Pizza":
+            case "Pizza(Clone)":
                 foodTotal.Pizza += 1;
                 weekTotal.Pizza += 1;
                 dayTotal.Pizza += 1;
                 break;
             case "Soda":
+            case "Soda(Clone)":
                 foodTotal.Soda += 1;
                 weekTotal.Soda += 1;
                 dayTotal.Soda += 1;
@@ -361,6 +383,14 @@ public class LevelManager : MonoBehaviour {
     {
         switch (foodName)
         {
+            case "apple(Clone)":
+            case "broccoli(Clone)":
+            case "Carrot(Clone)":
+            case "Banana(Clone)":
+            case "cheese(Clone)":
+            case "Egg(Clone)":
+            case "Fish(Clone)":
+            case "Orange(Clone)":
             case "apple":
             case "broccoli":
             case "Carrot":
@@ -370,17 +400,23 @@ public class LevelManager : MonoBehaviour {
             case "Fish":
             case "Orange":
                 return 1;
+            case "Burger(Clone)":
             case "Burger":
                 return dayTotal.Burger > 1 ? -1 : 1;
             case "Pizza":
+            case "Pizza(Clone)":
                 return dayTotal.Pizza > 1 ? -1 : 1;
             case "fries":
+            case "fries(Clone)":
                 return dayTotal.FrenchFries > 1 ? -1 : 1;
             case "Candy":
+            case "Candy(Clone)":
                 return dayTotal.CandyBar > 1 ? -1 : 1;
             case "IceCream":
+            case "IceCream(Clone)":
                 return dayTotal.IceCream > 1 ? -1 : 1;
             case "Soda":
+            case "Soda(Clone)":
                 return dayTotal.Soda > 1 ? -1 : 1;
             default:
                 return 1;
@@ -390,11 +426,11 @@ public class LevelManager : MonoBehaviour {
     private void UpdateUI(string foodName)
     {
         int stepSize = GetLevelStepSize();
-        int direction = 1;
+        int direction = EnergyBarDirection(foodName);
 
         //increment or decrement energy bar
         RectTransform energyBarTransform = GameObject.Find("EnergyBar").GetComponent<RectTransform>();
-        energyBarTransform.sizeDelta = new Vector2(Math.Min(energyBarTransform.rect.width + (direction * stepSize), 280), energyBarTransform.rect.height);
+        energyBarTransform.sizeDelta = new Vector2(Math.Max(Math.Min(energyBarTransform.rect.width + (direction * stepSize), 280),0), energyBarTransform.rect.height);
 
         //update player UI image if needed
         const float energyBarMaxWidth = 280f;
