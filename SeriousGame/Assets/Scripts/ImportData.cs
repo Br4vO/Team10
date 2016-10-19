@@ -7,20 +7,20 @@ public class ImportData : MonoBehaviour {
 	TextAsset asset;
 	JsonData data;
 	FoodSpawner foodSpawner;
-	List<GameObject[,]> foodPlaceByLevel; 
+	public List<int[,]> foodPlaceByLevel; 
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
-		foodPlaceByLevel = new List<GameObject[,]>();
+		foodPlaceByLevel = new List<int[,]>();
 
 		foodSpawner = GameObject.Find ("FoodSpawner").GetComponent<FoodSpawner>();
 
 		asset = Resources.Load("pickupObjectPosition") as TextAsset;
 		Debug.Log (asset);
 		data =JsonUtility.FromJson<JsonData>(asset.text);
-		//Inserting 2 level arrays
-		foodPlaceByLevel.Insert (foodPlaceByLevel.Count,new GameObject[3, 6]);
-		foodPlaceByLevel.Insert (foodPlaceByLevel.Count,new GameObject[3, 6]);
+		//Inserting 14 level arrays
+		for (int i = 0; i <14; i++)
+			foodPlaceByLevel.Insert (foodPlaceByLevel.Count,new int[3, 6]);
 		buildTiles ();
 	}
 	
@@ -32,28 +32,31 @@ public class ImportData : MonoBehaviour {
 
 	void buildTiles()
 	{
-		List<GameObject> poolOfFoods;
 
-		for (int i = 5; i >= 0; i--) 
+
+		List<int[]> foodMapData = new List<int[]>();
+		foodMapData.Add (data.level1);
+		foodMapData.Add (data.level2);
+		foodMapData.Add (data.level3);
+		foodMapData.Add (data.level4);
+		foodMapData.Add (data.level5);
+		foodMapData.Add (data.level6);
+		foodMapData.Add (data.level7);
+		foodMapData.Add (data.level8);
+		foodMapData.Add (data.level9);
+		foodMapData.Add (data.level10);
+		foodMapData.Add (data.level11);
+		foodMapData.Add (data.level12);
+		foodMapData.Add (data.level13);
+		foodMapData.Add (data.level14);
+
+		for (int l = 0; l < 14; l++) 
 		{
-			for (int j = 0; j < 3; j++)
+			for (int i = 5; i >= 0; i--)
 			{
-				Debug.Log((FoodSpawner.Foods)data.level1 [j + i]);
-
-				if (data.level1 [j + ((5-i)*3)] != 0) 
+				for (int j = 0; j < 3; j++) 
 				{
-					foodSpawner.foodPool.TryGetValue ((FoodSpawner.Foods)data.level1 [j + ((5-i)*3)], out poolOfFoods);
-                    //Finding available food
-
-                    int k = 0;
-					while (poolOfFoods [k].transform.position.x != 0 || poolOfFoods [k].transform.position.z != -3)
-                    {
-                        Debug.Log("k=" + k);
-                        k++;
-					}
-					foodPlaceByLevel [0] [j, i] = poolOfFoods [k];
-					foodPlaceByLevel [0] [j, i].transform.position = new Vector3 (j * .38333333f, 0, i * .38333333f);
-					Debug.Log(foodPlaceByLevel [0] [j, i].transform.position);
+					foodPlaceByLevel [l] [j, i] = foodMapData[l][j + ((5 - i) * 3)];
 				}
 			}
 		}
@@ -65,4 +68,16 @@ class JsonData
 {
 	public int[] level1 = new int[18];
 	public int[] level2 = new int[18];
+	public int[] level3 = new int[18];
+	public int[] level4 = new int[18];
+	public int[] level5 = new int[18];
+	public int[] level6 = new int[18];
+	public int[] level7 = new int[18];
+	public int[] level8 = new int[18];
+	public int[] level9 = new int[18];
+	public int[] level10 = new int[18];
+	public int[] level11 = new int[18];
+	public int[] level12 = new int[18];
+	public int[] level13 = new int[18];
+	public int[] level14 = new int[18];
 }

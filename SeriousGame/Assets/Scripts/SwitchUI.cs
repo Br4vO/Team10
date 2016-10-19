@@ -17,6 +17,12 @@ public class SwitchUI : MonoBehaviour {
 		endGameUI.gameObject.SetActive (false);
 	}
 
+	public void toStart()
+	{
+		startUI.gameObject.SetActive (true);
+		endGameUI.gameObject.SetActive (false);
+	}
+
 	public void toIngame()
 	{
 		startUI.gameObject.SetActive (false);

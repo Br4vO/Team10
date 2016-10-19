@@ -48,8 +48,12 @@ public class LevelManager : MonoBehaviour {
     private Food weekTotal;
     private Food dayTotal;
 
+	private FoodSpawner foodSpawner;
+
     private int currLevel;
     private List<Food> levelGoals;
+
+	private List<GameObject[,]> FoodLevelObjects;
 
     private AudioSource gameMusic;
 
@@ -61,6 +65,7 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		foodSpawner = GameObject.Find ("FoodSpawner").GetComponent<FoodSpawner>();
         gameMusic = GetComponent<AudioSource>();
         gameMusic.Play();
 
@@ -69,8 +74,12 @@ public class LevelManager : MonoBehaviour {
         dayTotal = new Food();
         currLevel = 1;
         levelGoals = new List<Food>();
+		FoodLevelObjects = new List<GameObject[,]> ();
+		for (int i = 0; i <14; i++)
+			FoodLevelObjects.Insert (FoodLevelObjects.Count,new GameObject[3, 6]);
 
         CreateLevelGoals();
+		SetupNextLevel ();
     }
 	
 	// Update is called once per frame
@@ -88,6 +97,12 @@ public class LevelManager : MonoBehaviour {
     {
         return currLevel;
     }
+
+	public void NextLevel()
+	{
+		currLevel++;
+		SetupNextLevel ();
+	}
 
     void CreateLevelGoals()
     {
@@ -178,4 +193,49 @@ public class LevelManager : MonoBehaviour {
         temp.Cheese = 2;
         levelGoals.Add(temp);
     }
+
+	private void SetupNextLevel()
+	{
+		List<int[,]> tempData = this.GetComponent<ImportData> ().foodPlaceByLevel; 
+		List<GameObject> poolOfFoods;
+
+		if (GetCurrentLevel () - 3 >= 0) 
+		{
+			//Moving all objects form previous level back
+			for (int i = 5; i >= 0; i--) 
+			{
+				for (int j = 0; j < 3; j++) 
+				{
+					if (FoodLevelObjects [GetCurrentLevel () - 2] [j, i])
+						FoodLevelObjects [GetCurrentLevel () - 2] [j, i].transform.position = new Vector3 (0, 0, -3);
+				}
+			}
+		} 
+
+
+		//Moving objects to right place
+		for (int i = 5; i >= 0; i--)
+		{
+			for (int j = 0; j < 3; j++) 
+			{
+				if (tempData [GetCurrentLevel () - 1] [j, i] != 0) 
+				{
+					foodSpawner.foodPool.TryGetValue ((FoodSpawner.Foods)tempData [GetCurrentLevel () - 1] [j, i], out poolOfFoods);
+					//Finding available food
+
+					int k = 0;
+					while (poolOfFoods [k].transform.position.z != -3) {
+						k++;
+					}
+					FoodLevelObjects [GetCurrentLevel () - 1] [j, i] = poolOfFoods [k];
+
+					FoodLevelObjects [GetCurrentLevel () - 1] [j, i].transform.position = new Vector3 (j * .38333333f, 0, i * .38333333f);
+				}
+			}
+		}
+
+		//Reset player position
+		GameObject.Find("player").transform.position = new Vector3(0.3833333f, 0f, -0.3833333f);
+		GameObject.Find ("UI").GetComponent<SwitchUI> ().toStart ();
+	}
 }

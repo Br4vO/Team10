@@ -27,7 +27,7 @@ public class PlayerHandler : MonoBehaviour {
             }
         }
 
-		if (gameObject.transform.position.z >= 5)
+		if (gameObject.transform.position.z >= 2.5)
 		{
 			ResetLevel ();
 		}

@@ -9,7 +9,7 @@ public class FoodSpawner : MonoBehaviour {
 	public Dictionary<Foods, List<GameObject>> foodPool;
 
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
 		foodPool = new Dictionary<Foods,List<GameObject>> ();
 		foodPool.Add(Foods.Apple, new List<GameObject>());
