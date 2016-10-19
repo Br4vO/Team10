@@ -14,8 +14,8 @@ public class PickUp : MonoBehaviour {
         Debug.Log("Moved item to 0,0,-3 position");
         transform.position = new Vector3(0, 0, -3);
         chompSound.Play();
-    //    AudioSource.PlayClipAtPoint(pickSound, transform.position);
-        //Destroy(this.gameObject);
+
+        GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().FoodCollected(this.name);
     }
  /*   void OnTriggerStay(Collider other)
     {
