@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerHandler : MonoBehaviour {
     private Vector2 position;
-    private int walkingCount = 30;
+    private int walkingCount = 23;
     float xOffset;
     float yOffset;
     Animation playerAnimation;
@@ -36,7 +36,7 @@ public class PlayerHandler : MonoBehaviour {
     public void MovePlayer(float xSwipeDirection, float ySwipeDirection)
     {
         float temp = position.x + xSwipeDirection;
-        if (temp > 2 || temp < 0)
+        if (walkingCount != 23 || temp > 2 || temp < 0)
         {
             return;
         }

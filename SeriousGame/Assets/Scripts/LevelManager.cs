@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Food
 {
@@ -40,6 +41,11 @@ public class Food
         FrenchFries = 0;
         CandyBar = 0;
         IceCream = 0;
+    }
+
+    public int GetTotalFood()
+    {
+        return Apple + Broccoli + Banana + Orange + Cheese + Fish + Egg + Carrot + Burger + Pizza + Soda + FrenchFries + CandyBar + IceCream;
     }
 }
 
@@ -238,4 +244,124 @@ public class LevelManager : MonoBehaviour {
 		GameObject.Find("player").transform.position = new Vector3(0.3833333f, 0f, -0.3833333f);
 		GameObject.Find ("UI").GetComponent<SwitchUI> ().toStart ();
 	}
+    private void IncrementFoodCount(string foodName)
+    {
+        switch (foodName)
+        {
+            case "apple":
+                foodTotal.Apple += 1;
+                weekTotal.Apple += 1;
+                dayTotal.Apple += 1;
+                break;
+            case "Banana":
+                foodTotal.Banana += 1;
+                weekTotal.Banana += 1;
+                dayTotal.Banana += 1;
+                break;
+            case "broccoli":
+                foodTotal.Broccoli += 1;
+                weekTotal.Broccoli += 1;
+                dayTotal.Broccoli += 1;
+                break;
+            case "Burger":
+                foodTotal.Burger += 1;
+                weekTotal.Burger += 1;
+                dayTotal.Burger += 1;
+                break;
+            case "Candy":
+                foodTotal.CandyBar += 1;
+                weekTotal.CandyBar += 1;
+                dayTotal.CandyBar += 1;
+                break;
+            case "Carrot":
+                foodTotal.Carrot += 1;
+                weekTotal.Carrot += 1;
+                dayTotal.Carrot += 1;
+                break;
+            case "cheese":
+                foodTotal.Cheese += 1;
+                weekTotal.Cheese += 1;
+                dayTotal.Cheese += 1;
+                break;
+            case "Egg":
+                foodTotal.Egg += 1;
+                weekTotal.Egg += 1;
+                dayTotal.Egg += 1;
+                break;
+            case "Fish":
+                foodTotal.Fish += 1;
+                weekTotal.Fish += 1;
+                dayTotal.Fish += 1;
+                break;
+            case "fries":
+                foodTotal.FrenchFries += 1;
+                weekTotal.FrenchFries += 1;
+                dayTotal.FrenchFries += 1;
+                break;
+            case "IceCream":
+                foodTotal.IceCream += 1;
+                weekTotal.IceCream += 1;
+                dayTotal.IceCream += 1;
+                break;
+            case "Orange":
+                foodTotal.Orange += 1;
+                weekTotal.Orange += 1;
+                dayTotal.Orange += 1;
+                break;
+            case "Pizza":
+                foodTotal.Pizza += 1;
+                weekTotal.Pizza += 1;
+                dayTotal.Pizza += 1;
+                break;
+            case "Soda":
+                foodTotal.Soda += 1;
+                weekTotal.Soda += 1;
+                dayTotal.Soda += 1;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private int GetLevelStepSize()
+    {
+        Food levelGoal = levelGoals[GetCurrentLevel() - 1];
+        return levelGoal.GetTotalFood() / 280; 
+    }
+
+    private void UpdateUI(string foodName)
+    {
+        int stepSize = GetLevelStepSize();
+
+        //increment or decrement energy bar
+        RectTransform energyBarTransform = GameObject.Find("EnergyBar").GetComponent<RectTransform>();
+        energyBarTransform.sizeDelta = new Vector2(stepSize, energyBarTransform.rect.height);
+
+        //update player UI image if needed
+        const float energyBarMaxWidth = 280f;
+        float energyPercent = energyBarTransform.rect.width / energyBarMaxWidth;
+
+        if(energyPercent < .25f)
+        {
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads_0", typeof(Sprite)) as Sprite;
+        }
+        else if(energyPercent < .5f)
+        {
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads_1", typeof(Sprite)) as Sprite;
+        }
+        else if(energyPercent < .75f)
+        {
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads_2", typeof(Sprite)) as Sprite;
+        }
+        else
+        {
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads_3", typeof(Sprite)) as Sprite;
+        }
+    }
+
+    public void FoodCollected(string foodName)
+    {
+        IncrementFoodCount(foodName);
+        UpdateUI(foodName);   
+    }
 }
