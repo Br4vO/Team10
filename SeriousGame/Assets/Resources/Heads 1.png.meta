@@ -1,17 +1,13 @@
 fileFormatVersion: 2
-guid: fa939ea8ba0dde747a7572c4c14592a9
-timeCreated: 1476813635
+guid: 85227cac191feb847a231bbf916bb43b
+timeCreated: 1476915412
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: heads (1)_0
-    21300002: heads (1)_1
-    21300004: heads (1)_2
-    21300006: heads (1)_3
-    21300008: heads_0
-    21300010: heads_1
-    21300012: heads_2
-    21300014: heads_3
+    21300000: Heads 1_0
+    21300002: Heads 1_1
+    21300004: Heads 1_2
+    21300006: Heads 1_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -61,52 +57,52 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heads_0
+      name: Heads 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 180
-        height: 229
+        width: 200
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: heads_1
+      name: Heads 1_1
       rect:
         serializedVersion: 2
-        x: 180
+        x: 200
         y: 0
-        width: 180
-        height: 229
+        width: 200
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: heads_2
+      name: Heads 1_2
       rect:
         serializedVersion: 2
-        x: 360
+        x: 400
         y: 0
-        width: 180
-        height: 229
+        width: 200
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: heads_3
+      name: Heads 1_3
       rect:
         serializedVersion: 2
-        x: 540
+        x: 600
         y: 0
-        width: 180
-        height: 229
+        width: 200
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -64,6 +64,8 @@ public class LevelManager : MonoBehaviour {
 
     private AudioSource gameMusic;
 
+    public Sprite[] heads = new Sprite[4];
+
     void Awake()
     {
         Application.targetFrameRate = 60;
@@ -330,13 +332,44 @@ public class LevelManager : MonoBehaviour {
         return (280 / levelGoal.GetTotalFood()) + 1; 
     }
 
+    private int EnergyBarDirection(string foodName)
+    {
+        switch (foodName)
+        {
+            case "apple":
+            case "broccoli":
+            case "Carrot":
+            case "Banana":
+            case "cheese":
+            case "Egg":
+            case "Fish":
+            case "Orange":
+                return 1;
+            case "Burger":
+                return dayTotal.Burger > 1 ? -1 : 1;
+            case "Pizza":
+                return dayTotal.Pizza > 1 ? -1 : 1;
+            case "fries":
+                return dayTotal.FrenchFries > 1 ? -1 : 1;
+            case "Candy":
+                return dayTotal.CandyBar > 1 ? -1 : 1;
+            case "IceCream":
+                return dayTotal.IceCream > 1 ? -1 : 1;
+            case "Soda":
+                return dayTotal.Soda > 1 ? -1 : 1;
+            default:
+                return 1;
+        }
+    }
+
     private void UpdateUI(string foodName)
     {
         int stepSize = GetLevelStepSize();
+        int direction = 1;
 
         //increment or decrement energy bar
         RectTransform energyBarTransform = GameObject.Find("EnergyBar").GetComponent<RectTransform>();
-        energyBarTransform.sizeDelta = new Vector2(Math.Min(energyBarTransform.rect.width + stepSize, 280), energyBarTransform.rect.height);
+        energyBarTransform.sizeDelta = new Vector2(Math.Min(energyBarTransform.rect.width + (direction * stepSize), 280), energyBarTransform.rect.height);
 
         //update player UI image if needed
         const float energyBarMaxWidth = 280f;
@@ -344,21 +377,19 @@ public class LevelManager : MonoBehaviour {
 
         if(energyPercent < .25f)
         {
-            Sprite sheet = Resources.Load("heads_0", typeof(Sprite)) as Sprite;
-
-            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads", typeof(Sprite)) as Sprite;
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = heads[0];
         }
         else if(energyPercent < .5f)
         {
-            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads", typeof(Sprite)) as Sprite;
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = heads[1];
         }
         else if(energyPercent < .75f)
         {
-            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads", typeof(Sprite)) as Sprite;
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = heads[2];
         }
         else
         {
-            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = Resources.Load("heads", typeof(Sprite)) as Sprite;
+            GameObject.Find("PlayerUIImage").GetComponent<Image>().sprite = heads[3];
         }
     }
 
