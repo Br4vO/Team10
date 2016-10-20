@@ -86,7 +86,7 @@ public class LevelManager : MonoBehaviour {
 	private List<GameObject[,]> FoodLevelObjects;
 
     private AudioSource gameMusic;
-
+	Text[] textboxes = new Text[6];
     public Sprite[] heads = new Sprite[4];
 
     void Awake()
@@ -139,6 +139,7 @@ public class LevelManager : MonoBehaviour {
 
     void CreateLevelGoals()
     {
+
         //level 1
         Food temp = new Food();
         temp.Apple = 3;
@@ -482,10 +483,12 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
+
 	public void showPickupStats()
 	{
 		List<int>tempIntList = levelGoals [GetCurrentLevel ()-1].GetGoalData ();
 		List<GameObject> poolOfFoods = new List<GameObject> ();
+
 		for (int i = 0; i < 14; i++) 
 		{
 			if (tempIntList [i] > 0) 
@@ -495,6 +498,7 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 		int k = 0;
+		int foodNumber = 0;
 		foreach (GameObject food in GUIObjects) 
 		{
 			
@@ -505,6 +509,42 @@ public class LevelManager : MonoBehaviour {
 			k += 30;
 			if (food.name == "Pizza(Clone)" || food.name == "Candy(Clone)" || food.name == "Fish(Clone)" || food.name == "cheese(Clone)")
 				food.transform.Rotate(Vector3.left*45, Space.World);
+			foodNumber++;
+		}
+		UpdateTextIngame ();
+	}
+
+	public void UpdateTextIngame()
+	{
+
+		textboxes [0] = GameObject.Find ("TextObject1").GetComponent<Text> ();
+		textboxes [1] = GameObject.Find ("TextObject2").GetComponent<Text> ();
+		textboxes [2] = GameObject.Find ("TextObject3").GetComponent<Text> ();
+		textboxes [3] = GameObject.Find ("TextObject4").GetComponent<Text> ();
+		textboxes [4] = GameObject.Find ("TextObject5").GetComponent<Text> ();
+		textboxes [5] = GameObject.Find ("TextObject6").GetComponent<Text> ();
+
+		List<int>currentData = levelGoals [GetCurrentLevel ()-1].GetGoalData ();
+		List<int>goalData = dayTotal.GetGoalData ();
+
+		int textboxNumber = 0;
+		int currentNumber = 0;
+		int goalNumber = 0;
+		foreach (GameObject food in GUIObjects) 
+		{
+
+			while (currentData [goalNumber] == 0)
+				goalNumber++;
+
+
+			while (currentData [currentNumber] == 0)
+				currentNumber++;
+
+
+			textboxes [textboxNumber].text = goalData [currentNumber].ToString () + " / " + currentData [goalNumber].ToString ();
+			goalNumber++;
+			currentNumber++;
+			textboxNumber++;
 		}
 	}
 
@@ -514,6 +554,10 @@ public class LevelManager : MonoBehaviour {
 		{
 			food.layer = 0;
 			food.transform.position = new Vector3 (0, 0, -3);
+			if (food.name == "Pizza(Clone)" || food.name == "Candy(Clone)" || food.name == "Fish(Clone)" || food.name == "cheese(Clone)")
+				food.transform.Rotate(Vector3.left*-45, Space.World);
+			foreach (Text textbox in textboxes)
+				textbox.text = "";
 			food.transform.parent = null;
 		}
 
