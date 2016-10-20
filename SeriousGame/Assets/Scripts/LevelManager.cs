@@ -376,7 +376,7 @@ public class LevelManager : MonoBehaviour {
     private int GetLevelStepSize()
     {
         Food levelGoal = levelGoals[GetCurrentLevel() - 1];
-        return (280 / levelGoal.GetTotalFood()) + 1; 
+        return (330 / levelGoal.GetTotalFood()) + 1; 
     }
 
     private int EnergyBarDirection(string foodName)
@@ -430,10 +430,11 @@ public class LevelManager : MonoBehaviour {
 
         //increment or decrement energy bar
         RectTransform energyBarTransform = GameObject.Find("EnergyBar").GetComponent<RectTransform>();
-        energyBarTransform.sizeDelta = new Vector2(Math.Max(Math.Min(energyBarTransform.rect.width + (direction * stepSize), 280),0), energyBarTransform.rect.height);
+        float temp = Math.Max(Math.Min(energyBarTransform.rect.width + (direction * stepSize), 330),0);
+        energyBarTransform.sizeDelta = new Vector2(temp, energyBarTransform.rect.height);
 
         //update player UI image if needed
-        const float energyBarMaxWidth = 280f;
+        const float energyBarMaxWidth = 330f;
         float energyPercent = energyBarTransform.rect.width / energyBarMaxWidth;
 
         if(energyPercent < .25f)
