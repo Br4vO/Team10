@@ -559,7 +559,7 @@ public class LevelManager : MonoBehaviour {
 			food.transform.position = GameObject.Find ("UICamera").transform.position;
 			food.layer = 8;
 			food.transform.parent = GameObject.Find ("UICamera").transform;
-			food.transform.localPosition = new Vector3 (-250, 60-k, 100);
+			food.transform.localPosition = new Vector3 (-200, 60-k, 100);
 			k += 30;
 			if (food.name == "Pizza(Clone)" || food.name == "Candy(Clone)" || food.name == "Fish(Clone)" || food.name == "cheese(Clone)")
 				food.transform.Rotate(Vector3.left*45, Space.World);

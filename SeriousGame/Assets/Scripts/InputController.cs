@@ -20,7 +20,7 @@ public class InputController : MonoBehaviour {
         {
             isMobile = false;
         }
-
+		isMobile = false;
         player = GameObject.Find("player").GetComponent<PlayerHandler>();
         comfortZone = 100;
         paused = true;

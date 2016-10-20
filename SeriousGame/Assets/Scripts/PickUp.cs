@@ -6,7 +6,7 @@ public class PickUp : MonoBehaviour {
 	LevelManager levelManager;
     void Start()
     {
-		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
+		levelManager = GameObject.Find ("LevelManager").GetComponent<LevelManager> ();
         chompSound = GetComponent<AudioSource>();
     }
 
