@@ -198,22 +198,19 @@ public class LevelManager : MonoBehaviour {
         temp.IceCream = 1;
         temp.Fish = 2;
         temp.Egg = 1;
-        temp.Carrot = 1;
+        temp.Carrot = 2;
         temp.Broccoli = 1;
         temp.Orange = 1;
-        temp.Apple = 1;
         levelGoals.Add(temp);
 
         //level 10
         temp = new Food();
         temp.Egg = 3;
-        temp.Broccoli = 2;
+        temp.Broccoli = 1;
         temp.Fish = 2;
-        temp.Apple = 2;
+        temp.Apple = 3;
         temp.Banana = 1;
-        temp.Carrot = 1;
-        temp.Cheese = 1;
-        temp.Orange = 1;
+        temp.Cheese = 3;
         levelGoals.Add(temp);
 
         //level 11
@@ -224,6 +221,35 @@ public class LevelManager : MonoBehaviour {
         temp.Egg = 2;
         temp.Broccoli = 2;
         temp.Cheese = 2;
+        levelGoals.Add(temp);
+
+        //level 12
+        temp = new Food();
+        temp.Soda = 1;
+        temp.Cheese = 2;
+        temp.IceCream = 1;
+        temp.Apple = 3;
+        temp.Fish = 2;
+        temp.Burger = 1;
+        levelGoals.Add(temp);
+
+        //level 13
+        temp = new Food();
+        temp.Carrot = 2;
+        temp.Broccoli = 3;
+        temp.CandyBar = 1;
+        temp.Soda = 1;
+        temp.Cheese = 3;
+        levelGoals.Add(temp);
+
+        //level 14
+        temp = new Food();
+        temp.Banana = 4;
+        temp.IceCream = 1;
+        temp.Pizza = 1;
+        temp.Orange = 3;
+        temp.Broccoli = 4;
+        temp.Egg = 1;
         levelGoals.Add(temp);
     }
 
