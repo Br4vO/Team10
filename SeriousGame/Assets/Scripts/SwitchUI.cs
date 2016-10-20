@@ -44,7 +44,9 @@ public class SwitchUI : MonoBehaviour {
 		inGameUI.gameObject.SetActive (false);
 		endGameUI.gameObject.SetActive (true);
 
-	GameObject.Find ("LevelManager").GetComponent<LevelManager> ().removePickupStats ();
+	    GameObject.Find ("LevelManager").GetComponent<LevelManager> ().removePickupStats ();
         GameObject.Find("InputController").GetComponent<InputController>().SetPaused(true);
+        GameObject.Find("Description").GetComponent<Text>().text = GameObject.Find("LevelManager").GetComponent<LevelManager>().GetRandomDescription();
+        GameObject.Find("Title").GetComponent<Text>().text = GameObject.Find("LevelManager").GetComponent<LevelManager>().GetLevelRank();
     }
 }

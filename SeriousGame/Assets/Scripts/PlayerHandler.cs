@@ -27,9 +27,10 @@ public class PlayerHandler : MonoBehaviour {
             }
         }
 
-		if (gameObject.transform.position.z >= 2.5)
-		{
-			ResetLevel ();
+		if (gameObject.transform.position.z >= 2.5 && position.y > 5)
+        {
+            position = new Vector2(1, -1);
+            ResetLevel ();
 		}
 	}
 

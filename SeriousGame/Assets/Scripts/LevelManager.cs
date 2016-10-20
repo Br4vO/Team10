@@ -88,6 +88,8 @@ public class LevelManager : MonoBehaviour {
     private AudioSource gameMusic;
 
     public Sprite[] heads = new Sprite[4];
+    private List<String> descriptions;
+    private float playerRank;
 
     void Awake()
     {
@@ -97,6 +99,9 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+        descriptions = new List<String>();
+        InitDescriptions();
+
 		foodSpawner = GameObject.Find ("FoodSpawner").GetComponent<FoodSpawner>();
         gameMusic = GetComponent<AudioSource>();
         gameMusic.Play();
@@ -120,6 +125,50 @@ public class LevelManager : MonoBehaviour {
 	{
 	
 	}
+
+    void InitDescriptions()
+    {
+        descriptions.Add("Apples give you energy for school and play!");
+        descriptions.Add("Broccoli helps keep you from getting sick!");
+        descriptions.Add("Bananas help keep your muscles strong!");
+        descriptions.Add("Oranges help you get better when you are sick!");
+        descriptions.Add("Cheese helps keep your bones strong!");
+        descriptions.Add("Fish helps keep your heart healthy and strong!");
+        descriptions.Add("Eggs help keep your brain in tip-top shape!");
+        descriptions.Add("Carrots help your eyesight!");
+        descriptions.Add("Burgers often have vegetables and meat, but you shouldn’t eat too many!");
+        descriptions.Add("French Fries are fried potatoes. They may taste good, but can be very unhealthy if you eat a lot!");
+        descriptions.Add("Pizza can have cheese, vegetables and meat, but too much pizza can hurt your body!");
+        descriptions.Add("Soda is yummy and sugary, but too much sugar is never good for you!");
+        descriptions.Add("Candy is a fun treat, but too much candy can hurt your teeth!");
+        descriptions.Add("Ice Cream is great for dessert but too much can give you a tummy ache!");
+    }
+
+    public String GetRandomDescription()
+    {
+        System.Random r = new System.Random();
+        return descriptions[r.Next(0, descriptions.Count - 1)];
+    }
+
+    public String GetLevelRank()
+    {
+        if (playerRank < .25f)
+        {
+            return "You Ate Very Unhealthy.";
+        }
+        else if (playerRank < .5f)
+        {
+            return "You Ate Unhealthy.";
+        }
+        else if (playerRank < .75f)
+        {
+            return "You Ate Healthy!";
+        }
+        else
+        {
+            return "You Ate Very Healthy!";
+        }
+    }
 
     List<Food> GetLevelGoals()
     {
@@ -463,6 +512,7 @@ public class LevelManager : MonoBehaviour {
         //update player UI image if needed
         const float energyBarMaxWidth = 330f;
         float energyPercent = energyBarTransform.rect.width / energyBarMaxWidth;
+        playerRank = energyPercent;
 
         if(energyPercent < .25f)
         {
