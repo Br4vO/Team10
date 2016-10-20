@@ -3,9 +3,10 @@ using System.Collections;
 //var pickSound:AudioClip;
 public class PickUp : MonoBehaviour {
     AudioSource chompSound;
-
+	LevelManager levelManager;
     void Start()
     {
+		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
         chompSound = GetComponent<AudioSource>();
     }
 
@@ -15,7 +16,8 @@ public class PickUp : MonoBehaviour {
         transform.position = new Vector3(0, 0, -3);
         chompSound.Play();
 
-        GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().FoodCollected(this.name);
+		levelManager.FoodCollected(this.name);
+		levelManager.UpdateTextIngame ();
     }
  /*   void OnTriggerStay(Collider other)
     {
