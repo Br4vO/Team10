@@ -22,11 +22,14 @@ public class SwitchUI : MonoBehaviour {
 	{
 		startUI.gameObject.SetActive (true);
 		endGameUI.gameObject.SetActive (false);
-        GameObject.Find("InputController").GetComponent<InputController>().SetPaused(true);
-    }
+		GameObject.Find ("InputController").GetComponent<InputController> ().SetPaused (true);
+		GameObject.Find ("LevelManager").GetComponent<LevelManager> ().FeedTextObjective ();
+	}
+    
 
 	public void toIngame()
 	{
+		GameObject.Find ("ObjectiveText").GetComponent<Text> ().text = "";
 		startUI.gameObject.SetActive (false);
 		inGameUI.gameObject.SetActive (true);
 		GameObject.Find ("LevelManager").GetComponent<LevelManager> ().showPickupStats ();

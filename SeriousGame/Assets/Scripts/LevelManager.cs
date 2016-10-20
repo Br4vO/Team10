@@ -564,9 +564,24 @@ public class LevelManager : MonoBehaviour {
 		UpdateTextIngame ();
 	}
 
+	public void removePickupStats ()
+	{
+		foreach (GameObject food in GUIObjects) 
+		{
+			food.layer = 0;
+			food.transform.position = new Vector3 (0, 0, -3);
+			if (food.name == "Pizza(Clone)" || food.name == "Candy(Clone)" || food.name == "Fish(Clone)" || food.name == "cheese(Clone)")
+				food.transform.Rotate(Vector3.left*-45, Space.World);
+			foreach (Text textbox in textboxes)
+				textbox.text = "";
+			food.transform.parent = null;
+		}
+
+		GUIObjects.Clear ();
+	}
+
 	public void UpdateTextIngame()
 	{
-
 		textboxes [0] = GameObject.Find ("TextObject1").GetComponent<Text> ();
 		textboxes [1] = GameObject.Find ("TextObject2").GetComponent<Text> ();
 		textboxes [2] = GameObject.Find ("TextObject3").GetComponent<Text> ();
@@ -598,20 +613,22 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void removePickupStats ()
+	public void FeedTextObjective()
 	{
-		foreach (GameObject food in GUIObjects) 
+		List<int>tempIntList = levelGoals [GetCurrentLevel ()-1].GetGoalData ();
+		List<string> tempFoodsName = new List<string> ();
+		int couter = 0;
+		for (int i = 0; i < 14; i++) 
 		{
-			food.layer = 0;
-			food.transform.position = new Vector3 (0, 0, -3);
-			if (food.name == "Pizza(Clone)" || food.name == "Candy(Clone)" || food.name == "Fish(Clone)" || food.name == "cheese(Clone)")
-				food.transform.Rotate(Vector3.left*-45, Space.World);
-			foreach (Text textbox in textboxes)
-				textbox.text = "";
-			food.transform.parent = null;
+			if (tempIntList [i] > 0) 
+			{
+				tempFoodsName.Add(((FoodSpawner.Foods)i + 1).ToString());
+				GameObject.Find ("ObjectiveText").GetComponent<Text> ().text += tempFoodsName[couter] + " = " + tempIntList[i] + ". ";
+
+				couter++;
+			}
 		}
 
-		GUIObjects.Clear ();
 	}
 
     public void FoodCollected(string foodName)
