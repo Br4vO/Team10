@@ -81,7 +81,7 @@ public class LevelManager : MonoBehaviour {
     private int currLevel;
     private List<Food> levelGoals;
 
-	//private List<GameObject> GUIObjects;
+	private List<GameObject> GUIObjects;
 
 	private List<GameObject[,]> FoodLevelObjects;
 
