@@ -152,7 +152,11 @@ public class LevelManager : MonoBehaviour {
 
     public String GetLevelRank()
     {
-        if (playerRank < .25f)
+		if (playerRank == 0) 
+		{
+			return "You Ate Very Unhealthy.";
+		}
+        else if (playerRank < .25f)
         {
             return "You Ate Very Unhealthy.";
         }
